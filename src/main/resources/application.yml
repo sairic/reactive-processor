@@ -1,0 +1,18 @@
+spring:
+  data:
+    cassandra:
+      keyspaceName: testkeyspace
+      contactPoints: localhost
+      port: 9042
+      schemaAction: recreate
+  cloud:
+    stream:
+      bindings:
+        output:
+          destination: transformed
+        test-sink:
+          destination: transformed
+        input:
+          destination: testtock
+        test-source:
+          destination: testtock
