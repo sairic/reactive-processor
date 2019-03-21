@@ -1,7 +1,7 @@
 spring:
   data:
     cassandra:
-      keyspaceName: testkeyspace
+      keyspaceName: pricing
       contactPoints: localhost
       port: 9042
       schemaAction: recreate

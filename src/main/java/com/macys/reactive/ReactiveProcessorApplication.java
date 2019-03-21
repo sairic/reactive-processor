@@ -14,11 +14,7 @@ import reactor.core.publisher.Flux;
 import java.time.Duration;
 
 
-/*  CREATE KEYSPACE testkeyspace
-    WITH REPLICATION = {
-     'class' : 'SimpleStrategy',
-     'replication_factor' : 1
-   };*/
+/*  CREATE KEYSPACE IF NOT EXISTS pricing WITH REPLICATION = { 'class':'SimpleStrategy', 'replication_factor':1 }; */
 
 
 @SpringBootApplication
