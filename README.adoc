@@ -13,7 +13,7 @@ To run this sample, you will need to have installed:
 
 The following instructions assume that you have docker installed on your system.
 
-* Go to the application root (not the repository root, but this application)
+* Go to the application root
 * `docker-compose up -d` (Starts Kafka, Zookeeper and Scylla within their own container)
 
 * `./mvnw clean package` (builds the application from source)
