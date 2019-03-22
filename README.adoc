@@ -31,7 +31,8 @@ The following instructions assume that you have docker installed on your system.
 * Go to the application root
 * `docker-compose -f docker-compose-cassandra.yml up -d` (Starts Kafka, Zookeeper and Cassandra within their own container)
 
-* `./mvnw clean package` on linux/mac or mvnw clean package on windows (builds the application from source)
+* `./mvnw clean package` on linux/mac or
+  `mvnw clean package` on windows (builds the application from source)
 
 * `docker exec -i cassandra cqlsh -e "CREATE KEYSPACE IF NOT EXISTS pricing WITH REPLICATION = { 'class':'SimpleStrategy', 'replication_factor':1 };"`
 (Will create the keyspace needed for the sample application)
