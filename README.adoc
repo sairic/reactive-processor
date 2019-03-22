@@ -8,6 +8,7 @@ This is a Spring Cloud Stream reactive processor sample.
 To run this sample, you will need to have installed:
 
 * Java 8 or Above
+* Docker
 
 ## Running the application
 
