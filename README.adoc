@@ -10,19 +10,35 @@ To run this sample, you will need to have installed:
 * Java 8 or Above
 * Docker
 
-## Running the application
+## Running the application using Scylla
 
 The following instructions assume that you have docker installed on your system.
 
 * Go to the application root
 * `docker-compose up -d` (Starts Kafka, Zookeeper and Scylla within their own container)
 
-* `./mvnw clean package` (builds the application from source)
+* `./mvnw clean package` on linux/mac or mvnw clean package on windows (builds the application from source)
 
 * `docker exec -i scylla cqlsh -e "CREATE KEYSPACE IF NOT EXISTS pricing WITH REPLICATION = { 'class':'SimpleStrategy', 'replication_factor':1 };"`
-(Will create the keyspace needed for the sample application
+(Will create the keyspace needed for the sample application)
 
 * `java -jar target/reactive-processor-0.0.1-SNAPSHOT.jar`
+
+## Running the application using Cassandra
+
+The following instructions assume that you have docker installed on your system.
+
+* Go to the application root
+* `docker-compose -f docker-compose-cassandra.yml up -d` (Starts Kafka, Zookeeper and Cassandra within their own container)
+
+* `./mvnw clean package` on linux/mac or mvnw clean package on windows (builds the application from source)
+
+* `docker exec -i cassandra cqlsh -e "CREATE KEYSPACE IF NOT EXISTS pricing WITH REPLICATION = { 'class':'SimpleStrategy', 'replication_factor':1 };"`
+(Will create the keyspace needed for the sample application)
+
+* `java -jar target/reactive-processor-0.0.1-SNAPSHOT.jar`
+
+## Overview
 
 The main application contains the reactive processor that receives textual data for a duration and aggregates them.
 It then sends the aggregated data through the outbound destination of the processor.
@@ -42,8 +58,3 @@ Data received: foobarfoobarfoo
 ```
 
 * `docker-compose down`
-
-### Running the application with Cassandra instead of Scylla
-
-If you wish to use Cassandra instead of Scylla, simply comment out the scylla section of the docker-compose.yml and
-uncomment the cassandra section. Then follow the instructions above in "Running the application"
