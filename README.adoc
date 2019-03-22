@@ -11,12 +11,15 @@ To run this sample, you will need to have installed:
 
 ## Running the application
 
-The following instructions assume that you are running Kafka as a Docker image.
+The following instructions assume that you have docker installed on your system.
 
 * Go to the application root (not the repository root, but this application)
-* `docker-compose up -d`
+* `docker-compose up -d` (Starts Kafka, Zookeeper and Scylla within their own container)
 
-* `./mvnw clean package`
+* `./mvnw clean package` (builds the application from source)
+
+* `docker exec -i scylla cqlsh -e "CREATE KEYSPACE IF NOT EXISTS pricing WITH REPLICATION = { 'class':'SimpleStrategy', 'replication_factor':1 };"`
+(Will create the keyspace needed for the sample application
 
 * `java -jar target/reactive-processor-0.0.1-SNAPSHOT.jar`
 
@@ -39,14 +42,7 @@ Data received: foobarfoobarfoo
 
 * `docker-compose down`
 
-## Running the application using Rabbit binder
+### Running the application with Cassandra instead of Scylla
 
-All the instructions above apply here also, but instead of running the default `docker-compose.yml`, use the command below to start a Rabbitmq cluser.
-
-* `docker-compose -f docker-compose-rabbit.yml up -d`
-
-* `./mvnw clean package -P rabbit-binder`
-
-* `java -jar target/reactive-processor-0.0.1-SNAPSHOT.jar`
-
-Once you are done testing: `docker-compose -f docker-compose-rabbit.yml down`
+If you wish to use Cassandra instead of Scylla, simply comment out the scylla section of the docker-compose.yml and
+uncomment the cassandra section. Then follow the instructions above in "Running the application"
