@@ -18,7 +18,7 @@ import java.util.List;
 @Configuration
 @EnableReactiveCassandraRepositories(basePackages = "com.macys.reactive")
 public class CassandraConfig extends AbstractReactiveCassandraConfiguration{
-    @Value("${spring.data.cassandra.contactpoints}") private String contactPoints;
+    @Value("${spring.data.cassandra.contact-points}") private String contactPoints;
     @Value("${spring.data.cassandra.port}") private int port;
     @Value("${spring.data.cassandra.keyspace-name}") private String keyspace;
 
@@ -51,6 +51,7 @@ public class CassandraConfig extends AbstractReactiveCassandraConfiguration{
 
         cluster.setJmxReportingEnabled(false);
         cluster.setContactPoints(contactPoints);
+        System.out.println("RICARDO CONTACT POINTS IS " + contactPoints);
         cluster.setPort(port);
         cluster.setAuthProvider(authProvider);
         cluster.setKeyspaceCreations(getKeyspaceCreations());
