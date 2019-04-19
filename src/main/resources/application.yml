@@ -5,6 +5,8 @@ spring:
       contactPoints: localhost
       port: 9042
       schemaAction: recreate
+      username: cassandra
+      password: cassandra
   cloud:
     stream:
       bindings:
